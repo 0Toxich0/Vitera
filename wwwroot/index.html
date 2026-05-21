@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Vitera — находи свои места</title>
+    <meta name="description" content="Vitera помогает найти идеальное место для отдыха: подберём атмосферу, кухню и стиль под ваши предпочтения.">
+    <!-- Bootstrap + иконки -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Общий стиль (контрастный, тёмный) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i class="fas fa-map-marked-alt me-2"></i>Vitera</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" data-page="recommend" href="#"><i class="fas fa-magic"></i> Рекомендации</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="explore" href="#"><i class="fas fa-compass"></i> Все места</a></li>
+                <li class="nav-item"><a class="nav-link" data-page="history" href="#"><i class="fas fa-clock"></i> История</a></li>
+            </ul>
+            <select id="citySelect" class="form-select city-selector w-auto me-2">
+                <option>Москва</option><option>Санкт-Петербург</option><option>Новосибирск</option>
+                <option>Екатеринбург</option><option>Казань</option><option>Нижний Новгород</option>
+                <option>Челябинск</option><option>Самара</option><option>Омск</option>
+                <option>Ростов-на-Дону</option><option>Уфа</option><option>Красноярск</option>
+            </select>
+            <button class="btn btn-outline-primary btn-sm me-2" id="changePrefsBtn"><i class="fas fa-sliders-h"></i> Мои предпочтения</button>
+            <button class="btn btn-outline-secondary btn-sm" id="resetHistoryBtn"><i class="fas fa-trash-alt"></i> Сбросить историю</button>
+        </div>
+    </div>
+</nav>
+
+<main class="container pb-5" id="appContainer">
+    <div class="text-center py-5"><div class="spinner-border text-primary"></div><p>Загрузка...</p></div>
+</main>
+
+<footer class="footer mt-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h5><i class="fas fa-heart text-danger me-1"></i> Vitera</h5>
+                <p class="small">Персональный подбор мест по атмосфере, интересам и стилю</p>
+                <div><a href="faq.html" class="text-decoration-none me-3">FAQ</a><a href="contacts.html" class="text-decoration-none">Контакты</a></div>
+            </div>
+            <div class="col-md-6">
+                <h5>Подпишитесь на новости</h5>
+                <form id="subscribeForm" class="row g-2">
+                    <div class="col-8"><input type="email" class="form-control" id="subEmail" placeholder="Email" required><div class="invalid-feedback">Введите email</div></div>
+                    <div class="col-4"><button type="submit" class="btn btn-primary w-100">Подписаться</button></div>
+                    <div class="col-12"><div class="form-check"><input class="form-check-input" type="checkbox" id="subAgree" required><label class="form-check-label small">Согласен на обработку данных</label></div></div>
+                </form>
+                <div id="subscribeMessage" class="mt-2 small"></div>
+            </div>
+        </div>
+        <hr class="my-3">
+        <p class="text-center small mb-0">&copy; 2026 Vitera — находи свои места</p>
+    </div>
+</footer>
+
+<!-- Модальное окно предпочтений -->
+<div class="modal fade" id="prefsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content preference-modal">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-sliders-h me-2"></i>Настройте предпочтения для города <span id="modalCityName"></span></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Атмосфера -->
+                <div class="pref-section">
+                    <div class="pref-title"><i class="fas fa-cloud-sun"></i> Атмосфера</div>
+                    <div class="pref-options" id="atmOptions"></div>
+                </div>
+                <!-- Типы мест -->
+                <div class="pref-section">
+                    <div class="pref-title"><i class="fas fa-heart"></i> Типы мест / Интересы</div>
+                    <div class="pref-options" id="typeOptions"></div>
+                </div>
+                <!-- Дополнительные опции -->
+                <div id="extraOptionsContainer"></div>
+                <!-- Ценовой сегмент -->
+                <div class="pref-section">
+                    <div class="pref-title"><i class="fas fa-ruble-sign"></i> Ценовой сегмент</div>
+                    <div class="pref-options" id="priceOptions"></div>
+                </div>
+                <div class="alert alert-info small mt-2">При выборе типа места появляются дополнительные настройки (кухня, стиль бара, формат кафе и т.д.)</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="resetPrefsBtn"><i class="fas fa-undo-alt"></i> Сбросить всё</button>
+                <button type="button" class="btn btn-primary" id="savePrefsBtn"><i class="fas fa-check-circle"></i> Сохранить и показать рекомендации</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
