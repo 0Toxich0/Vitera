@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "lN4rRWrEXKc=",
+  "dgSpecHash": "1Qx2Jz5ehuU=",
   "success": true,
   "projectFilePath": "C:\\Users\\Lenovo\\Desktop\\DPO\\Vitera\\ViteraBackend.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.extensions.apidescription.server\\10.0.0\\microsoft.extensions.apidescription.server.10.0.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\microsoft.openapi\\2.4.1\\microsoft.openapi.2.4.1.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\swashbuckle.aspnetcore\\10.2.0\\swashbuckle.aspnetcore.10.2.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\10.2.0\\swashbuckle.aspnetcore.swagger.10.2.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\10.2.0\\swashbuckle.aspnetcore.swaggergen.10.2.0.nupkg.sha512",
+    "C:\\Users\\Lenovo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\10.2.0\\swashbuckle.aspnetcore.swaggerui.10.2.0.nupkg.sha512"
+  ],
   "logs": []
 }

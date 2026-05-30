@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ViteraBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0b19401a02d1622f5ef8426c5a1447daa62470e7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3924a881edbc7896cfa8bd3390828f250f2ebe7f")]
 [assembly: System.Reflection.AssemblyProductAttribute("ViteraBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ViteraBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
